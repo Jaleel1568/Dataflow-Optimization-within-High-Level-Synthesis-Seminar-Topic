@@ -1,0 +1,393 @@
+{
+  "protocol_version": "0.2",
+  "student_id": "1230351",
+  "course": "Hardware Software Codesign",
+  "milestone": "Final-Paper-Dataflow-Optimization-HLS",
+  "topic": "Dataflow Optimization within High-Level Synthesis",
+  "entries": [
+    {
+      "id": "e-f1a1b1c1",
+      "parent_id": null,
+      "objective": "Confirm understanding of flat vs hierarchical synthesis tradeoff before writing Section I Introduction",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "So my paper is about a HLS technique that does hierarchical dataflow. Before I write anything, can you check if I understood it right: flat synthesis = slow but good quality, hierarchical = fast but misses stuff across blocks. Is that basically the core problem or am I oversimplifying?",
+      "ai_output_summary": "Confirmed the tradeoff was broadly correct. Flat synthesis sees whole design giving good quality but does not scale. Hierarchical synthesis is fast but misses cross-block optimization opportunities such as sharing functional units between sub-blocks.",
+      "verification": {
+        "actions": [
+          "Compared against Section I Introduction of Lakshminarayana and Jha 1999",
+          "Verified against own M1 milestone notes"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section I Introduction",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Kept my own phrasing for the final problem statement. Used this only to confirm I was not misunderstanding the tradeoff before building the rest of the paper on it. Final wording in paper is entirely my own."
+    },
+    {
+      "id": "e-f2a2b2c2",
+      "parent_id": null,
+      "objective": "Clarify what hierarchical DFG means before writing Section II-A",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "What is a hierarchical DFG exactly and how is it different from a normal DFG",
+      "ai_output_summary": "Explained that a hierarchical DFG contains hierarchical nodes whose internal behavior is itself described by a sub-DFG realized as an RTL module. The hierarchy can be arbitrarily deep. Simple nodes are basic operations while hierarchical nodes contain entire sub-graphs.",
+      "verification": {
+        "actions": [
+          "Checked against Section II-A of Lakshminarayana and Jha 1999",
+          "Verified definition of hierarchical node against paper"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section II-A Hierarchical Data-Flow Representation",
+        "usage_type": "terminology-clarification",
+        "direct_text_reused": false
+      },
+      "reflection": "Used to build understanding of hierarchical DFG structure. Final description in paper written entirely in my own words verified against the original paper."
+    },
+    {
+      "id": "e-f3a3b3c3",
+      "parent_id": null,
+      "objective": "Understand scheduling formula and slack before writing Section II-B",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Can you explain t(v) = max[t(u)+d(u)] and the slack formula simply with a concrete example",
+      "ai_output_summary": "Explained scheduling formula as waiting for slowest predecessor using numerical example. Explained slack as spare clock cycles before deadline is missed. When slack is zero only fast high-power unit can be used. When slack is positive slower lower-power unit can be substituted without violating deadline.",
+      "verification": {
+        "actions": [
+          "Checked formula against Equation 1 in Lakshminarayana and Jha 1999",
+          "Verified slack definition against Section II-B of paper",
+          "Confirmed O(V+E) complexity claim against paper"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section II-B Scheduling and Slack",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Formulas taken directly from paper. Explanations written entirely in my own words. O(V+E) complexity verified against paper before including in text."
+    },
+    {
+      "id": "e-f4a4b4c4",
+      "parent_id": null,
+      "objective": "Clarify the four moves before writing Section II-C",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Can you explain Replace Resynthesis Merge and Split with clear short definitions I keep mixing up Merge and Resynthesis",
+      "ai_output_summary": "Replace substitutes an equivalent module from library. Resynthesis rebuilds module internals under relaxed timing constraint made possible by available slack. Merge combines two modules even non-isomorphic ones into shared module to reduce area. Split breaks shared module back into two to escape local minima.",
+      "verification": {
+        "actions": [
+          "Checked all four definitions against Section IV of Lakshminarayana and Jha 1999",
+          "Cross-checked against own M1 milestone notes"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section II-C Iterative Improvement Moves",
+        "usage_type": "terminology-clarification",
+        "direct_text_reused": false
+      },
+      "reflection": "Rewrote all four definitions in my own words for the bullet list. Did not reuse AI wording directly. Verified each definition against original paper."
+    },
+    {
+      "id": "e-f5a5b5c5",
+      "parent_id": null,
+      "objective": "Convert rough M2 tradeoff notes into formatted table for Section III-C",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "I have bullet notes comparing area vs power, Vdd reduction, optimality vs runtime etc from my M2 milestone. Can you turn this into a proper 3 column tradeoff table for the paper without changing what it actually says?",
+      "ai_output_summary": "Reformatted existing bullet notes into three-column tradeoff table with columns for tradeoff, favours speed or simplicity, and favours quality or guarantees. Did not add new claims beyond what was in the original notes.",
+      "verification": {
+        "actions": [
+          "Checked every row against own M2 milestone file",
+          "Corrected one row that oversimplified the Vdd reduction and timing margin tradeoff",
+          "Verified against Section IV of Lakshminarayana and Jha 1999"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "partially-accepted",
+        "issues": [
+          "One row oversimplified the Vdd and timing margin tradeoff and had to be corrected manually before including in paper"
+        ],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section III-C Key Tradeoffs Table I",
+        "usage_type": "formatting-reorganization",
+        "direct_text_reused": false
+      },
+      "reflection": "Content of table came entirely from my own M2 milestone file. Used AI only to reformat into table structure. Caught and fixed one incorrect row before accepting."
+    },
+    {
+      "id": "e-f6a6b6c6",
+      "parent_id": null,
+      "objective": "Understand position of paper in HLS landscape before writing Section III-A",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Where does this paper sit compared to other HLS approaches like list scheduling ILP force directed and simulated annealing",
+      "ai_output_summary": "Explained that the paper sits at intersection of scheduling and resource optimization. List and force-directed scheduling are fast but do not optimize power. ILP is optimal but exponential. Simulated annealing escapes local minima but converges slowly. The reviewed paper combines all these concerns for hierarchical DFGs.",
+      "verification": {
+        "actions": [
+          "Checked against related work citations in Lakshminarayana and Jha 1999",
+          "Verified claims about ILP complexity and simulated annealing against own M2 notes",
+          "Cross-checked references 4 and 5 in final paper"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section III-A Position in the HLS Landscape and Section III-B Related and Competing Approaches",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Used to structure the contextualization section. All comparisons verified against references cited in paper. Final text written entirely in my own words."
+    },
+    {
+      "id": "e-f7a7b7c7",
+      "parent_id": null,
+      "objective": "Understand module sharing contribution and area numbers before writing Section II-C and Section IV-A",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Can you explain module sharing simply and what does the 45 percent area saving mean exactly",
+      "ai_output_summary": "Explained that RTL1 area 57.94 units plus RTL2 area 53.89 units totals 111.83 units. After merging into shared RTL the area is 61.67 units giving approximately 45 percent area saving. Each DFG keeps its own schedule and takes turns using the shared hardware.",
+      "verification": {
+        "actions": [
+          "Checked area numbers against Example 3 and Figure 3 in Lakshminarayana and Jha 1999",
+          "Verified 45 percent calculation manually: (111.83 - 61.67) / 111.83 = 44.9 percent"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section II-C Iterative Improvement Moves and Section IV-A Strengths",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Numbers verified manually against paper. Description of non-isomorphic module sharing written in my own words. This is cited as a strength in Section IV-A."
+    },
+    {
+      "id": "e-f8a8b8c8",
+      "parent_id": null,
+      "objective": "Understand experimental results difference before writing Section III-D and Section IV",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "What is the difference between 6.7x and 13.5 percent results they sound like they are measuring the same thing",
+      "ai_output_summary": "Explained that 6.7x is the best single result from kolba-parks FFT benchmark compared to area-optimized circuit at 5V which is an unfair baseline. The 13.5 percent is the average across all 7 benchmarks compared to flat synthesis also optimized for power which is a fair comparison. The 13.5 percent is therefore the more honest typical result.",
+      "verification": {
+        "actions": [
+          "Checked against Table III and Table IV in Lakshminarayana and Jha 1999",
+          "Verified benchmark descriptions in Section V of paper",
+          "Confirmed kolba-parks has 217 nodes as largest benchmark"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section III-D Consequences for Embedded and Real-Time Systems",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Understanding helped present results accurately in paper. Numbers taken directly from paper tables. Distinction between best case and average case reflected in final text."
+    },
+    {
+      "id": "e-f9a9b9c9",
+      "parent_id": null,
+      "objective": "Understand limitations clearly before writing Section IV-B and IV-C",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "What are the main limitations of this paper that I should discuss in critical evaluation",
+      "ai_output_summary": "Identified four main limitations: data-flow only restriction excluding control-flow designs, NP-hard module merging with unknown quality gap for large modules, missing convergence proof for Merge and Split cycle, and approximate switched-capacitance power model ignoring glitch power and interconnect effects.",
+      "verification": {
+        "actions": [
+          "Checked data-flow only limitation against Section VI Conclusions of paper",
+          "Verified NP-hard claim against Section IV-D of paper",
+          "Confirmed power model approximation against Section II-B of paper"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section IV-B Limitations and Risks and Section IV-C Assumptions That May Be Unrealistic",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Each limitation verified against paper before including. Critical evaluation text written entirely in my own words. Convergence proof gap identified as genuine open problem not addressed in paper."
+    },
+    {
+      "id": "e-f10a10b10c10",
+      "parent_id": null,
+      "objective": "Understand suitable and unsuitable application scenarios before writing Section V",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Where is this method suitable and where is it not suitable for embedded systems",
+      "ai_output_summary": "Suitable for data-dominated ASIC designs with fixed throughput such as DSP chips FFT filters and image processing. Suitable for battery-powered IoT devices needing power reduction. Not suitable for control-flow intensive firmware, FPGA targets without resource model adaptation, systems with variable deadlines, or systems requiring formal optimality guarantees.",
+      "verification": {
+        "actions": [
+          "Checked suitability claims against Section VI of Lakshminarayana and Jha 1999",
+          "Verified FPGA limitation against own M3 milestone notes",
+          "Confirmed WCET analysis benefit against paper discussion"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Section V Application Discussion",
+        "usage_type": "understanding-confirmation",
+        "direct_text_reused": false
+      },
+      "reflection": "Application discussion written entirely in my own words. All suitability and unsuitability claims verified against paper and own milestone notes before including."
+    },
+    {
+      "id": "e-f11a11b11c11",
+      "parent_id": null,
+      "objective": "Create draw.io diagram for hierarchical DFG figure used in paper as Figure 1",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Can you give me draw.io XML code for a simplified hierarchical DFG diagram showing two levels with blocks A B C at top and their internals below",
+      "ai_output_summary": "Generated draw.io XML code showing two-level hierarchical DFG. Top level shows Block A Block B Block C with inputs and output connections. Bottom level shows internal operations including multiplications and additions inside each block with color coding and dashed borders.",
+      "verification": {
+        "actions": [
+          "Compared diagram structure against Figure 1a in Lakshminarayana and Jha 1999",
+          "Verified that Block B dependency on Block A result is correctly shown",
+          "Confirmed internal operations match paper description"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Figure 1 in Section II-A",
+        "usage_type": "visual-creation",
+        "direct_text_reused": false
+      },
+      "reflection": "Diagram structure verified against Figure 1a of paper. Caption clearly states adapted from seminar presentation after reference 1. Modified layout and colors before including in final paper."
+    },
+    {
+      "id": "e-f12a12b12c12",
+      "parent_id": null,
+      "objective": "Check iterative improvement flowchart description before finalizing Figure 2 caption",
+      "ai_tool": {
+        "name": "Claude",
+        "model": "Claude Sonnet 4.6"
+      },
+      "prompt": "Can you describe the iterative improvement loop as a flowchart so I can create Figure 2 for my paper",
+      "ai_output_summary": "Described the iterative improvement loop as: start with initial solution, apply optimization moves Replace Merge Split Resynthesis, evaluate new solution, if better accept and repeat, if not try Split or alternative move, continue until no further improvement found which gives final solution.",
+      "verification": {
+        "actions": [
+          "Checked flowchart steps against Figure 4 in Lakshminarayana and Jha 1999",
+          "Verified that Split is correctly shown as response to non-improving move"
+        ],
+        "level": "primary-source-check"
+      },
+      "evaluation": {
+        "status": "accepted",
+        "issues": [],
+        "usefulness": "high"
+      },
+      "integration": {
+        "used_in_work": true,
+        "section": "Figure 2 in Section II-C",
+        "usage_type": "visual-creation",
+        "direct_text_reused": false
+      },
+      "reflection": "Flowchart created by me based on description. Caption clearly states adapted from seminar presentation after reference 1. Verified all steps against Figure 4 of original paper."
+    }
+  ],
+  "summary": {
+    "total_entries": 12,
+    "tools_used": [
+      "Claude Sonnet 4.6"
+    ],
+    "usage_types": [
+      "understanding-confirmation",
+      "terminology-clarification",
+      "formatting-reorganization",
+      "visual-creation"
+    ],
+    "direct_text_reused": false,
+    "all_verified_against_primary_source": true,
+    "primary_source": "Lakshminarayana G. and Jha N.K., High-Level Synthesis of Power-Optimized and Area-Optimized Circuits from Hierarchical Data-Flow Intensive Behaviors, IEEE Trans. Comput.-Aided Des. Integr. Circuits Syst., vol. 18, no. 3, pp. 265-281, Mar. 1999"
+  }
+}
